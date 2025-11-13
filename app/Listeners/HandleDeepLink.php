@@ -13,12 +13,12 @@ class HandleDeepLink
      */
     public function handle(OpenedFromURL $event): void
     {
-        $prefix = config('nativephp.deeplink_scheme') . '://';
-        if (!Str::startsWith($event->url, $prefix)) {
+        $prefix = config('nativephp.deeplink_scheme').'://';
+        if (! Str::startsWith($event->url, $prefix)) {
             return;
         }
 
-        $method = 'handle' . ucfirst(Str::after($event->url, $prefix));
+        $method = 'handle'.ucfirst(Str::after($event->url, $prefix));
         if (method_exists($this, $method)) {
             $this->{$method}($event);
         }

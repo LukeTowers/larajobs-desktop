@@ -5,8 +5,8 @@ namespace App\Providers;
 use App\Events\HandleGlobalShortcutRefreshEvent;
 use Illuminate\Support\Facades\Config;
 use Native\Desktop\Facades\GlobalShortcut;
-use Native\Desktop\Facades\MenuBar;
 use Native\Desktop\Facades\Menu;
+use Native\Desktop\Facades\MenuBar;
 
 class NativeAppServiceProvider
 {
@@ -16,7 +16,7 @@ class NativeAppServiceProvider
      */
     public function boot(): void
     {
-        $deepLinkPrefix = config('nativephp.deeplink_scheme') . '://';
+        $deepLinkPrefix = config('nativephp.deeplink_scheme').'://';
         MenuBar::create()
             ->icon(public_path('images/menuBarIconTemplate@2x.png'))
             ->route('menubar.index')->withContextMenu(

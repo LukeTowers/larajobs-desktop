@@ -9,7 +9,9 @@ use Livewire\Component;
 class Settings extends Component
 {
     public bool $addNewFilter = false;
+
     public Collection $filters;
+
     protected $listeners = [
         'toggleNotificationPreference',
         'filterAdded' => 'handleFilterAdded',

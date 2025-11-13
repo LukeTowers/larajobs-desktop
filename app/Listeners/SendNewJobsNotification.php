@@ -33,14 +33,14 @@ class SendNewJobsNotification
     {
         $message = $job->title;
 
-        if (!empty($job->salary)) {
-            $message .= ': ' . $job->salary;
+        if (! empty($job->salary)) {
+            $message .= ': '.$job->salary;
         }
 
         Notification::new()
             ->title("New job from {$job->creator->name}")
             ->message($message)
-            ->event(self::EVENT_CLICK_PREFIX . 'newjob.' . $job->id)
+            ->event(self::EVENT_CLICK_PREFIX.'newjob.'.$job->id)
             ->show();
 
         $job->update([
@@ -55,9 +55,9 @@ class SendNewJobsNotification
     protected function handleMultipleJobs(Collection $jobs): void
     {
         Notification::new()
-            ->title("View the latest jobs")
+            ->title('View the latest jobs')
             ->message("{$jobs->count()} new jobs available.")
-            ->event(self::EVENT_CLICK_PREFIX . 'newjobs')
+            ->event(self::EVENT_CLICK_PREFIX.'newjobs')
             ->show();
 
         JobPost::whereIn('id', $jobs->pluck('id'))
@@ -73,9 +73,9 @@ class SendNewJobsNotification
     protected function handleEmptyNotification(): void
     {
         Notification::new()
-            ->title("No new jobs")
-            ->message("There are no new jobs available.")
-            ->event(self::EVENT_CLICK_PREFIX . 'nojobs')
+            ->title('No new jobs')
+            ->message('There are no new jobs available.')
+            ->event(self::EVENT_CLICK_PREFIX.'nojobs')
             ->show();
     }
 }

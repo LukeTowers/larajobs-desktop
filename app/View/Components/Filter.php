@@ -12,9 +12,7 @@ class Filter extends Component
     /**
      * Create a new component instance.
      */
-    public function __construct(public ModelsFilter $filter)
-    {
-    }
+    public function __construct(public ModelsFilter $filter) {}
 
     /**
      * Get the view / contents that represent the component.

@@ -4,8 +4,8 @@ namespace App\Providers;
 
 use App\Events\HandleGlobalShortcutRefreshEvent;
 use App\Events\JobsPosted;
-use App\Listeners\HandleGlobalShortcutRefreshListener;
 use App\Listeners\HandleDeepLink;
+use App\Listeners\HandleGlobalShortcutRefreshListener;
 use App\Listeners\HandleNotificationClicked;
 use App\Listeners\SendNewJobsNotification;
 use Illuminate\Auth\Events\Registered;
@@ -35,8 +35,8 @@ class EventServiceProvider extends ServiceProvider
             SendNewJobsNotification::class,
         ],
         HandleGlobalShortcutRefreshEvent::class => [
-            HandleGlobalShortcutRefreshListener::class
-        ]
+            HandleGlobalShortcutRefreshListener::class,
+        ],
     ];
 
     /**
