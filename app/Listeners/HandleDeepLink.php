@@ -4,7 +4,7 @@ namespace App\Listeners;
 
 use App\Jobs\FetchNewJobs;
 use Illuminate\Support\Str;
-use Native\Laravel\Events\App\OpenedFromURL;
+use Native\Desktop\Events\App\OpenedFromURL;
 
 class HandleDeepLink
 {

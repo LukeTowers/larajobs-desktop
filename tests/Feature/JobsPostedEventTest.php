@@ -10,7 +10,7 @@ use App\Models\JobCreator;
 use App\Models\JobPost;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Native\Laravel\Facades\Notification;
+use Native\Desktop\Facades\Notification;
 use Tests\TestCase;
 
 class JobsPostedEventTest extends TestCase

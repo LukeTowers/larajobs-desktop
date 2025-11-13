@@ -4,7 +4,7 @@ namespace App\Listeners;
 
 use App\Jobs\FetchNewJobs;
 
-class HandleGlobalShortcutRefresh
+class HandleGlobalShortcutRefreshListener
 {
     /**
      * Handle the event.

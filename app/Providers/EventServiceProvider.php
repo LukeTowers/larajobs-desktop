@@ -2,16 +2,17 @@
 
 namespace App\Providers;
 
+use App\Events\HandleGlobalShortcutRefreshEvent;
 use App\Events\JobsPosted;
-use Event;
+use App\Listeners\HandleGlobalShortcutRefreshListener;
 use App\Listeners\HandleDeepLink;
 use App\Listeners\HandleNotificationClicked;
 use App\Listeners\SendNewJobsNotification;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
-use Native\Laravel\Events\App\OpenedFromURL;
-use Native\Laravel\Events\Notifications\NotificationClicked;
+use Native\Desktop\Events\App\OpenedFromURL;
+use Native\Desktop\Events\Notifications\NotificationClicked;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -32,6 +33,9 @@ class EventServiceProvider extends ServiceProvider
         ],
         JobsPosted::class => [
             SendNewJobsNotification::class,
+        ],
+        HandleGlobalShortcutRefreshEvent::class => [
+            HandleGlobalShortcutRefreshListener::class
         ]
     ];
 
