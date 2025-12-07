@@ -55,7 +55,7 @@ The LaraJobs Desktop application currently only supports MacOS. You will also ne
 2. Run `cd larajobs-desktop && composer install && npm install && npm run build`
 3. Run `cp .env.example .env`
 4. Run `php artisan key:generate`
-5. Run `php artisan native:serve`
+5. Run `php artisan native:run`
 
 ## Usage
 
@@ -65,7 +65,7 @@ Use LaraJobs Desktop to stay informed about new jobs.
 
 ### Notifications aren't displaying:
 
-Please make sure that notifications are enabled for the app. When running `php artisan native:serve` notifications are sent from the "Electron" app.
+Please make sure that notifications are enabled for the app. When running `php artisan native:run` notifications are sent from the "Electron" app.
 
 Broken:
 ![Electron notifications 1](https://raw.githubusercontent.com/UserScape/larajobs-desktop/main/public/images/screenshots/electron-notifications-1.png)
