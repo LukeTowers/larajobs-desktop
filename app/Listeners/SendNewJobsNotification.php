@@ -34,13 +34,13 @@ class SendNewJobsNotification
         $message = $job->title;
 
         if (! empty($job->salary)) {
-            $message .= ': '.$job->salary;
+            $message .= ': ' . $job->salary;
         }
 
         Notification::new()
             ->title("New job from {$job->creator->name}")
             ->message($message)
-            ->event(self::EVENT_CLICK_PREFIX.'newjob.'.$job->id)
+            ->event(self::EVENT_CLICK_PREFIX . 'newjob.' . $job->id)
             ->show();
 
         $job->update([
@@ -57,7 +57,7 @@ class SendNewJobsNotification
         Notification::new()
             ->title('View the latest jobs')
             ->message("{$jobs->count()} new jobs available.")
-            ->event(self::EVENT_CLICK_PREFIX.'newjobs')
+            ->event(self::EVENT_CLICK_PREFIX . 'newjobs')
             ->show();
 
         JobPost::whereIn('id', $jobs->pluck('id'))
@@ -75,7 +75,7 @@ class SendNewJobsNotification
         Notification::new()
             ->title('No new jobs')
             ->message('There are no new jobs available.')
-            ->event(self::EVENT_CLICK_PREFIX.'nojobs')
+            ->event(self::EVENT_CLICK_PREFIX . 'nojobs')
             ->show();
     }
 }

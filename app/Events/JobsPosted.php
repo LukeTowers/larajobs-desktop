@@ -14,5 +14,7 @@ class JobsPosted
     /**
      * Create a new event instance.
      */
-    public function __construct(public Collection $jobs, public bool $notifyEmpty = false) {}
+    public function __construct(public Collection $jobs, public bool $notifyEmpty = false)
+    {
+    }
 }

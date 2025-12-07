@@ -26,7 +26,9 @@ class FetchNewJobs implements ShouldQueue
     /**
      * Create a new job instance.
      */
-    public function __construct(public bool $notifyEmpty = false) {}
+    public function __construct(public bool $notifyEmpty = false)
+    {
+    }
 
     /**
      * Execute the job.
