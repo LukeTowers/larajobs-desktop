@@ -11,7 +11,9 @@ use Livewire\Component;
 class NewFilter extends Component
 {
     public $field;
+
     public $operation;
+
     public $query;
 
     public function rules(): array

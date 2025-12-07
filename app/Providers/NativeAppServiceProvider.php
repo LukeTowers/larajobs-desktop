@@ -2,13 +2,11 @@
 
 namespace App\Providers;
 
-use Config;
-use Native\Laravel\Enums\RolesEnum;
-use Native\Laravel\Facades\GlobalShortcut;
-use Native\Laravel\Facades\MenuBar;
-use Native\Laravel\Facades\Window;
-use Native\Laravel\Menu\Items\Role;
-use Native\Laravel\Menu\Menu;
+use App\Events\HandleGlobalShortcutRefreshEvent;
+use Illuminate\Support\Facades\Config;
+use Native\Desktop\Facades\GlobalShortcut;
+use Native\Desktop\Facades\Menu;
+use Native\Desktop\Facades\MenuBar;
 
 class NativeAppServiceProvider
 {
@@ -22,19 +20,22 @@ class NativeAppServiceProvider
         MenuBar::create()
             ->icon(public_path('images/menuBarIconTemplate@2x.png'))
             ->route('menubar.index')->withContextMenu(
-                Menu::new()
-                    ->link("{$deepLinkPrefix}refresh", 'Refresh', 'CmdOrCtrl+R')
-                    ->separator()
-                    ->link('https://larajobs.com', 'View LaraJobs.com', 'CmdOrCtrl+L')
-                    ->link('https://larajobs.com/create', 'Post a Job', 'CmdOrCtrl+P')
-                    ->link('https://larajobs.com/laravel-consultants', 'Hire a Laravel Consultant', 'CmdOrCtrl+H')
-                    ->separator()
-                    ->add(new Role(RolesEnum::QUIT, 'Quit ' . Config::get('app.name', 'LaraJobs Desktop')))
+                Menu::make(
+                    Menu::link("{$deepLinkPrefix}refresh", 'Refresh', 'CmdOrCtrl+R'),
+                    Menu::separator(),
+                    Menu::link('https://larajobs.com', 'View LaraJobs.com', 'CmdOrCtrl+L'),
+                    Menu::link('https://larajobs.com/create', 'Post a Job', 'CmdOrCtrl+P'),
+                    Menu::link('https://larajobs.com/laravel-consultants', 'Hire a Laravel Consultant', 'CmdOrCtrl+H'),
+                    Menu::separator(),
+                    Menu::quit()
+                )
             );
 
-        // @TODO: Figure out why this doesn't work
         GlobalShortcut::key('CmdOrCtrl+Shift+J')
-            ->event(\App\Events\HandleGlobalShortcutRefresh::class)
+            /**
+             * See: https://nativephp.com/docs/desktop/2/the-basics/global-hotkeys
+             */
+            ->event(HandleGlobalShortcutRefreshEvent::class)
             ->register();
 
         // For debugging

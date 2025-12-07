@@ -4,7 +4,7 @@ namespace App\Listeners;
 
 use App\Jobs\FetchNewJobs;
 use Illuminate\Support\Str;
-use Native\Laravel\Events\App\OpenedFromURL;
+use Native\Desktop\Events\App\OpenedFromURL;
 
 class HandleDeepLink
 {
@@ -14,7 +14,7 @@ class HandleDeepLink
     public function handle(OpenedFromURL $event): void
     {
         $prefix = config('nativephp.deeplink_scheme') . '://';
-        if (!Str::startsWith($event->url, $prefix)) {
+        if (! Str::startsWith($event->url, $prefix)) {
             return;
         }
 

@@ -2,10 +2,10 @@
 
 namespace App\Jobs;
 
-use App\Models\JobPost;
-use App\Models\JobCreator;
-use App\Models\JobTag;
 use App\Events\JobsPosted;
+use App\Models\JobCreator;
+use App\Models\JobPost;
+use App\Models\JobTag;
 use App\Services\RSSDataService;
 use Carbon\Carbon;
 use Illuminate\Bus\Queueable;
@@ -32,8 +32,6 @@ class FetchNewJobs implements ShouldQueue
 
     /**
      * Execute the job.
-     *
-     * @param  RSSDataService $rssDataService
      */
     public function handle(RSSDataService $rssDataService): void
     {

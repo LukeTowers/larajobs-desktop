@@ -2,19 +2,20 @@
 
 namespace App\Events;
 
-use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class JobsPosted
+class HandleGlobalShortcutRefreshEvent
 {
     use Dispatchable;
+    use InteractsWithSockets;
     use SerializesModels;
 
     /**
      * Create a new event instance.
      */
-    public function __construct(public Collection $jobs, public bool $notifyEmpty = false)
+    public function __construct()
     {
     }
 }

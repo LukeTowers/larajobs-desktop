@@ -17,7 +17,7 @@ class FetchNewJobsTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
 
@@ -26,7 +26,8 @@ class FetchNewJobsTest extends TestCase
         ]);
     }
 
-    protected function mockRssResponse() {
+    protected function mockRssResponse()
+    {
         $this->mock(RSSDataService::class, function ($mock) {
             $mock->shouldReceive('get')->andReturn(new SimpleXMLElement('
                 <rss xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:wfw="http://wellformedweb.org/CommentAPI/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:sy="http://purl.org/rss/1.0/modules/syndication/" xmlns:slash="http://purl.org/rss/1.0/modules/slash/" xmlns:job="https://larajobs.com" version="2.0">
@@ -63,7 +64,7 @@ class FetchNewJobsTest extends TestCase
         FetchNewJobs::dispatch();
 
         $this->assertDatabaseHas('job_posts', [
-            'title' => 'Junior beer taster'
+            'title' => 'Junior beer taster',
         ]);
     }
 
@@ -73,7 +74,7 @@ class FetchNewJobsTest extends TestCase
         Filter::factory()->create([
             'field' => FilterField::Title,
             'operation' => FilterOperation::Contains,
-            'query' => 'beer'
+            'query' => 'beer',
         ]);
 
         // Now pretend that the RSS feed came back with a junior role
@@ -94,7 +95,7 @@ class FetchNewJobsTest extends TestCase
         Filter::factory()->create([
             'field' => FilterField::Title,
             'operation' => FilterOperation::NotContains,
-            'query' => 'Junior'
+            'query' => 'Junior',
         ]);
 
         // Now pretend that the RSS feed came back with a junior role

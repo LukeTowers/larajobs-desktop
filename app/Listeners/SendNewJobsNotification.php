@@ -5,7 +5,7 @@ namespace App\Listeners;
 use App\Events\JobsPosted;
 use App\Models\JobPost;
 use Illuminate\Database\Eloquent\Collection;
-use Native\Laravel\Facades\Notification;
+use Native\Desktop\Facades\Notification;
 
 class SendNewJobsNotification
 {
@@ -33,7 +33,7 @@ class SendNewJobsNotification
     {
         $message = $job->title;
 
-        if (!empty($job->salary)) {
+        if (! empty($job->salary)) {
             $message .= ': ' . $job->salary;
         }
 
@@ -55,7 +55,7 @@ class SendNewJobsNotification
     protected function handleMultipleJobs(Collection $jobs): void
     {
         Notification::new()
-            ->title("View the latest jobs")
+            ->title('View the latest jobs')
             ->message("{$jobs->count()} new jobs available.")
             ->event(self::EVENT_CLICK_PREFIX . 'newjobs')
             ->show();
@@ -73,8 +73,8 @@ class SendNewJobsNotification
     protected function handleEmptyNotification(): void
     {
         Notification::new()
-            ->title("No new jobs")
-            ->message("There are no new jobs available.")
+            ->title('No new jobs')
+            ->message('There are no new jobs available.')
             ->event(self::EVENT_CLICK_PREFIX . 'nojobs')
             ->show();
     }
